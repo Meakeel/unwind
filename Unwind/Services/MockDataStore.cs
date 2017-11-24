@@ -61,5 +61,10 @@ namespace Unwind
         {
             return await Task.FromResult(items);
         }
+
+        Task<string> IDataStore<ConversationItem>.AddItemAsync(ConversationItem item)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -43,13 +43,18 @@
 
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromForm] ConversationItem item)
+        public async Task<IActionResult> Add([FromBody] ConversationItem item)
         {
             try
             {
                 if (item == null || string.IsNullOrWhiteSpace(item.Id))
                 {
                     return BadRequest(ErrorCode.NotValid.ToString());
+                }
+
+                if (item.Input == null)
+                {
+                    item.Input = string.Empty;
                 }
 
                 var users = await _context.Users.ToArrayAsync();
@@ -74,7 +79,7 @@
 
                     _context.Users.Add(new DbModels.User(){
                         Id = item.Id,
-                        MessageContext = JsonConvert.SerializeObject(result.Context)
+                        MessageContext = JsonConvert.SerializeObject(result)
                     });
                 } 
                 else
@@ -87,18 +92,18 @@
                         {
                             Text = item.Input
                         },
-                        Context = previousResponce
+                        Context = previousResponce.Context
                     };
 
                     //  send a message to the conversation instance
                     result = _conversation.Message(Constants.WatsonWorkSpaceId, messageRequest);
 
-                    user.MessageContext = JsonConvert.SerializeObject(result.Context);
+                    user.MessageContext = JsonConvert.SerializeObject(result);
                 }
 
                 await _context.SaveChangesAsync();
 
-                return Ok(result.Output.Text.FirstOrDefault());
+                return Ok(result.Output.Text);
             }
             catch (Exception)
             {

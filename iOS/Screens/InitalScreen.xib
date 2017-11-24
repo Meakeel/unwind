@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InitalScreen">
             <connections>
+                <outlet property="btnGo" destination="4aq-iL-g6b" id="HmI-yZ-nvV"/>
+                <outlet property="txtInput" destination="ylo-gj-na3" id="klV-5X-PsN"/>
                 <outlet property="txtTitle" destination="6sw-C6-iaA" id="5K5-TM-duD"/>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
             </connections>
@@ -21,9 +23,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Classic Welcome" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sw-C6-iaA">
-                    <rect key="frame" x="122" y="80" width="130" height="21"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="219"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="130" id="M2y-kE-chi"/>
+                        <constraint firstAttribute="height" constant="219" id="ELc-aJ-L8n"/>
+                        <constraint firstAttribute="width" constant="375" id="M2y-kE-chi"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="1" green="0.073777330464693813" blue="0.045563232519578167" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -34,15 +37,24 @@
                     <fontDescription key="fontDescription" type="system" pointSize="28"/>
                     <state key="normal" title="GO!"/>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ylo-gj-na3">
+                    <rect key="frame" x="175" y="291" width="25" height="30"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
             </subviews>
             <color key="backgroundColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="6sw-C6-iaA" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="Dbu-YY-IbS"/>
-                <constraint firstItem="6sw-C6-iaA" firstAttribute="top" secondItem="2" secondAttribute="top" constant="80" id="Kuc-gK-Eqa"/>
-                <constraint firstItem="4aq-iL-g6b" firstAttribute="top" secondItem="2" secondAttribute="top" constant="329" id="gRD-SV-yPs"/>
+                <constraint firstItem="4aq-iL-g6b" firstAttribute="top" secondItem="ylo-gj-na3" secondAttribute="bottom" constant="8" symbolic="YES" id="Cd1-Uk-W8D"/>
+                <constraint firstItem="4aq-iL-g6b" firstAttribute="centerX" secondItem="ylo-gj-na3" secondAttribute="centerX" id="Kg0-Mr-YKS"/>
+                <constraint firstItem="4aq-iL-g6b" firstAttribute="centerX" secondItem="2" secondAttribute="centerX" id="TYb-ws-VVW"/>
+                <constraint firstItem="ylo-gj-na3" firstAttribute="top" secondItem="6sw-C6-iaA" secondAttribute="bottom" constant="8" symbolic="YES" id="WHO-hO-PKO"/>
                 <constraint firstItem="6sw-C6-iaA" firstAttribute="centerX" secondItem="4aq-iL-g6b" secondAttribute="centerX" id="jjj-wO-hf6"/>
+                <constraint firstItem="4aq-iL-g6b" firstAttribute="top" secondItem="2" secondAttribute="top" constant="329" id="s5w-qQ-wEg"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
 </document>
