@@ -1,21 +1,27 @@
-﻿// WARNING
+// WARNING
 //
-// This file has been generated automatically by Xamarin Studio from the outlets and
+// This file has been generated automatically by Visual Studio from the outlets and
 // actions declared in your storyboard file.
 // Manual changes to this file will not be maintained.
 //
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
 namespace Unwind.iOS.Screens
 {
-    [Register("InitalScreen")]
+    [Register ("InitalScreen")]
     partial class InitalScreen
     {
-        void ReleaseDesignerOutlets()
+        [Outlet]
+        UIKit.UILabel txtTitle { get; set; }
+
+        void ReleaseDesignerOutlets ()
         {
+            if (txtTitle != null) {
+                txtTitle.Dispose ();
+                txtTitle = null;
+            }
         }
     }
 }

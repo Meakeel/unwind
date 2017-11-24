@@ -4,16 +4,15 @@ using UIKit;
 
 namespace Unwind.iOS.Screens
 {
-    public partial class InitalScreen : UIViewController
+    public partial class InitalScreen : BaseScreen<ItemsViewModel>
     {
-        public InitalScreen() : base("InitalScreen", null)
+        public InitalScreen() : base("InitalScreen", false)
         {
         }
 
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
-            // Perform any additional setup after loading the view, typically from a nib.
         }
 
         public override void DidReceiveMemoryWarning()
