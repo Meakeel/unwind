@@ -28,12 +28,26 @@
             return Ok("Service Ok");
         }
 
+        [HttpGet]
+        public IActionResult First()
+        {
+            ConversationService _conversation = new ConversationService(Constants.WatsonUserName, Constants.WatsonPassword, Constants.WatsonVersionDate);
+
+            var messageRequest = new MessageRequest();
+
+            var result = _conversation.Message(Constants.WatsonWorkSpaceId, messageRequest);
+
+            return Ok(result.Output.Text);
+
+        }
+
+
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] ConversationItem item)
+        public async Task<IActionResult> Add([FromForm] ConversationItem item)
         {
             try
             {
-                if (item == null || !ModelState.IsValid)
+                if (item == null || string.IsNullOrWhiteSpace(item.Id))
                 {
                     return BadRequest(ErrorCode.NotValid.ToString());
                 }
