@@ -43,7 +43,7 @@
 
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] ConversationItem item)
+        public async Task<IActionResult> Add([FromQuery] ConversationItem item)
         {
             try
             {
