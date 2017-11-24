@@ -7,7 +7,7 @@ namespace Unwind
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => ServiceLocator.Instance.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<ConversationItem> DataStore => ServiceLocator.Instance.Get<IDataStore<ConversationItem>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

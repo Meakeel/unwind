@@ -9,10 +9,10 @@ using System;
 using System.CodeDom.Compiler;
 using UIKit;
 
-namespace Unwind.iOS
+namespace Unwind.iOS.Screens
 {
-    [Register("TabBarController")]
-    partial class TabBarController
+    [Register("InitalScreen")]
+    partial class InitalScreen
     {
         void ReleaseDesignerOutlets()
         {

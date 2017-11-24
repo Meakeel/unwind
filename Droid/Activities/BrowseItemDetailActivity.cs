@@ -21,12 +21,12 @@ namespace Unwind.Droid
 
             var data = Intent.GetStringExtra("data");
 
-            var item = Newtonsoft.Json.JsonConvert.DeserializeObject<Item>(data);
+            var item = Newtonsoft.Json.JsonConvert.DeserializeObject<ConversationItem>(data);
             viewModel = new ItemDetailViewModel(item);
 
-            FindViewById<TextView>(Resource.Id.description).Text = item.Description;
+            FindViewById<TextView>(Resource.Id.description).Text = item.Input;
 
-            SupportActionBar.Title = item.Text;
+            SupportActionBar.Title = item.Input;
         }
 
         protected override void OnStart()

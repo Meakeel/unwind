@@ -1,5 +1,6 @@
 ﻿using Foundation;
 using UIKit;
+using Unwind.iOS.Screens;
 
 namespace Unwind.iOS
 {
@@ -20,7 +21,9 @@ namespace Unwind.iOS
         {
             App.Initialize();
 
-
+            Window = new UIWindow(UIScreen.MainScreen.Bounds) { BackgroundColor = UIColor.White };
+            Window.RootViewController = new UINavigationController(new InitalScreen());
+            Window.MakeKeyAndVisible();
 
             return true;
         }

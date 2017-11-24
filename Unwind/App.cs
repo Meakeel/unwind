@@ -10,9 +10,9 @@ namespace Unwind
         public static void Initialize()
         {
             if (UseMockDataStore)
-                ServiceLocator.Instance.Register<IDataStore<Item>, MockDataStore>();
+                ServiceLocator.Instance.Register<IDataStore<ConversationItem>, MockDataStore>();
             else
-                ServiceLocator.Instance.Register<IDataStore<Item>, CloudDataStore>();
+                ServiceLocator.Instance.Register<IDataStore<ConversationItem>, CloudDataStore>();
         }
     }
 }

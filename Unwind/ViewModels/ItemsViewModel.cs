@@ -7,16 +7,16 @@ namespace Unwind
 {
     public class ItemsViewModel : BaseViewModel
     {
-        public ObservableCollection<Item> Items { get; set; }
+        public ObservableCollection<ConversationItem> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
         public Command AddItemCommand { get; set; }
 
         public ItemsViewModel()
         {
             Title = "Browse";
-            Items = new ObservableCollection<Item>();
+            Items = new ObservableCollection<ConversationItem>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            AddItemCommand = new Command<Item>(async (Item item) => await AddItem(item));
+            AddItemCommand = new Command<ConversationItem>(async (ConversationItem item) => await AddItem(item));
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -45,7 +45,7 @@ namespace Unwind
             }
         }
 
-        async Task AddItem(Item item)
+        async Task AddItem(ConversationItem item)
         {
             Items.Add(item);
             await DataStore.AddItemAsync(item);

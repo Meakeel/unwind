@@ -5,39 +5,39 @@ using System.Threading.Tasks;
 
 namespace Unwind
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MockDataStore : IDataStore<ConversationItem>
     {
-        List<Item> items;
+        List<ConversationItem> items;
 
         public MockDataStore()
         {
-            items = new List<Item>();
-            var _items = new List<Item>
+            items = new List<ConversationItem>();
+            var _items = new List<ConversationItem>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is a nice description"},
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is a nice description"},
+                new ConversationItem { Id = Guid.NewGuid().ToString(), Input = "First item" },
+                new ConversationItem { Id = Guid.NewGuid().ToString(), Input = "Second item" },
+                new ConversationItem { Id = Guid.NewGuid().ToString(), Input = "Third item" },
+                new ConversationItem { Id = Guid.NewGuid().ToString(), Input = "Fourth item" },
+                new ConversationItem { Id = Guid.NewGuid().ToString(), Input = "Fifth item" },
+                new ConversationItem { Id = Guid.NewGuid().ToString(), Input = "Sixth item" },
             };
 
-            foreach (Item item in _items)
+            foreach (ConversationItem item in _items)
             {
                 items.Add(item);
             }
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddItemAsync(ConversationItem item)
         {
             items.Add(item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateItemAsync(ConversationItem item)
         {
-            var _item = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
+            var _item = items.Where((ConversationItem arg) => arg.Id == item.Id).FirstOrDefault();
             items.Remove(_item);
             items.Add(item);
 
@@ -46,18 +46,18 @@ namespace Unwind
 
         public async Task<bool> DeleteItemAsync(string id)
         {
-            var _item = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
+            var _item = items.Where((ConversationItem arg) => arg.Id == id).FirstOrDefault();
             items.Remove(_item);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<ConversationItem> GetItemAsync(string id)
         {
             return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<ConversationItem>> GetItemsAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(items);
         }

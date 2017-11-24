@@ -121,8 +121,8 @@ namespace Unwind.Droid
 
             // Replace the contents of the view with that element
             var myHolder = holder as MyViewHolder;
-            myHolder.TextView.Text = item.Text;
-            myHolder.DetailTextView.Text = item.Description;
+            myHolder.TextView.Text = item.Input;
+            myHolder.DetailTextView.Text = item.Input;
         }
 
         public override int ItemCount => viewModel.Items.Count;

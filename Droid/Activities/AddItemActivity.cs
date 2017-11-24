@@ -32,11 +32,11 @@ namespace Unwind.Droid
 
         void SaveButton_Click(object sender, EventArgs e)
         {
-            var item = new Item
+            var item = new ConversationItem
             {
-                Text = title.Text,
-                Description = description.Text
+                Input = title.Text
             };
+
             ViewModel.AddItemCommand.Execute(item);
 
             Finish();
