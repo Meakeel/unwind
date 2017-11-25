@@ -9,6 +9,7 @@ namespace Unwind.iOS.Screens
     public partial class InitalScreen : BaseScreen<MessageViewModel>
     {
         private string apiResponse;
+        private string Id;
 
         public InitalScreen() : base("InitalScreen", false)
         {
@@ -17,6 +18,8 @@ namespace Unwind.iOS.Screens
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            this.Id = Guid.NewGuid().ToString();
 
             this.NavigationItem.LeftBarButtonItem = UIBarButtonItemHelpers.Create("Menu", () => base.SetupPicker());
 
@@ -27,7 +30,8 @@ namespace Unwind.iOS.Screens
         {
             var item = new ConversationItem
             {
-                Input = this.txtInput.Text
+                Input = this.txtInput.Text,
+                Id = this.Id
             };
 
             Action setOpacityNone = () =>
@@ -43,15 +47,16 @@ namespace Unwind.iOS.Screens
 
             UIViewPropertyAnimator propertyAnimatorOpacityNone = new UIViewPropertyAnimator(2, UIViewAnimationCurve.EaseInOut, setOpacityNone);
 
-            propertyAnimatorOpacityNone.StartAnimation();
+            //propertyAnimatorOpacityNone.StartAnimation();
 
             var Response = await this.ViewModel.SendMessage(item);  
 
-            TimerCallback abortPositionDelegate = new TimerCallback(setOpacityFull);
-            Timer abortPosition = new Timer(abortPositionDelegate, null, 3000, Timeout.Infinite);
+            //TimerCallback abortPositionDelegate = new TimerCallback(setOpacityFull);
+            //Timer abortPosition = new Timer(abortPositionDelegate, null, 3000, Timeout.Infinite);
 
             this.apiResponse = Response;
-            this.txtTitle.Text = this.apiResponse;
+            this.txtTitle.Text = this.apiResponse.Replace("[","").Replace("]", "").Replace("\",\"", Environment.NewLine).Replace("\"", "");
+            this.txtInput.Text = "";
         }
 
         private void OpacityFull()

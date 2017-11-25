@@ -19,7 +19,7 @@ namespace Unwind.iOS.Screens
 		UIKit.UITextField txtInput { get; set; }
 
 		[Outlet]
-		UIKit.UILabel txtTitle { get; set; }
+		UIKit.UITextView txtTitle { get; set; }
 
 		[Outlet]
 		UIKit.UIView viewText { get; set; }
@@ -36,14 +36,14 @@ namespace Unwind.iOS.Screens
 				txtInput = null;
 			}
 
-			if (txtTitle != null) {
-				txtTitle.Dispose ();
-				txtTitle = null;
-			}
-
 			if (viewText != null) {
 				viewText.Dispose ();
 				viewText = null;
+			}
+
+			if (txtTitle != null) {
+				txtTitle.Dispose ();
+				txtTitle = null;
 			}
 		}
 	}
