@@ -45,6 +45,19 @@
         [HttpPost]
         public async Task<IActionResult> Add([FromQuery] ConversationItem item)
         {
+            return await this.SendMessage(item);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddIos([FromBody] ConversationItem item)
+        {
+            return await this.SendMessage(item);
+        }
+
+
+        private async Task<IActionResult> SendMessage(ConversationItem item)
+        {
+
             try
             {
                 if (item == null || string.IsNullOrWhiteSpace(item.Id))
@@ -77,11 +90,12 @@
 
                     result = _conversation.Message(Constants.WatsonWorkSpaceId, messageRequest);
 
-                    _context.Users.Add(new DbModels.User(){
+                    _context.Users.Add(new DbModels.User()
+                    {
                         Id = item.Id,
                         MessageContext = JsonConvert.SerializeObject(result)
                     });
-                } 
+                }
                 else
                 {
                     var previousResponce = JsonConvert.DeserializeObject<MessageResponse>(user.MessageContext);
@@ -110,7 +124,6 @@
                 return BadRequest(ErrorCode.CouldNotCreateMessage.ToString());
             }
         }
-
 
         public enum ErrorCode
             {

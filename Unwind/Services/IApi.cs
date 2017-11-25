@@ -5,7 +5,7 @@
 
     public interface IApi
     {
-        [Post("/api/add")]
+        [Post("/api/AddIos")]
         Task<string> SendMessage([Body]ConversationItem body);
     }
 }

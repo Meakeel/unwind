@@ -25,7 +25,6 @@ namespace Unwind
             if (item == null || !CrossConnectivity.Current.IsConnected)
                 return "Sorry we are having troubble connecting to the internet, please try again";
 
-
             item.Id = "ben12";
 
             var api = RestService.For<IApi>(App.BackendUrl);

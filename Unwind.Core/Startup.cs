@@ -47,7 +47,7 @@ namespace Unwind.Core
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller}/{action}/{id?}",
+                    template: "{controller}/{action}",
                     defaults: new { controller = "Api", action = "Index" });
             });
         }
