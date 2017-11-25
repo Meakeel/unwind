@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using UIKit;
 
@@ -6,6 +7,8 @@ namespace Unwind.iOS.Screens
 {
     public partial class InitalScreen : BaseScreen<MessageViewModel>
     {
+        private string apiResponse;
+
         public InitalScreen() : base("InitalScreen", false)
         {
         }
@@ -24,9 +27,41 @@ namespace Unwind.iOS.Screens
                 Input = this.txtInput.Text
             };
 
+            Action setOpacityNone = () =>
+            {
+                this.viewText.Alpha = 0;
+            };
+
+            Action<object> setOpacityFull = (o) =>
+            {
+                this.OpacityFull();
+            };
+
+
+            UIViewPropertyAnimator propertyAnimatorOpacityNone = new UIViewPropertyAnimator(2, UIViewAnimationCurve.EaseInOut, setOpacityNone);
+
+            propertyAnimatorOpacityNone.StartAnimation();
+
             var Response = await this.ViewModel.SendMessage(item);
 
-            this.txtTitle.Text = Response;
+            TimerCallback abortPositionDelegate = new TimerCallback(setOpacityFull);
+            Timer abortPosition = new Timer(abortPositionDelegate, null, 3000, Timeout.Infinite);
+
+            this.apiResponse = Response;
+        }
+
+        private void OpacityFull()
+        {
+            this.txtTitle.Text = this.apiResponse;
+
+            Action setOpacityFull = () =>
+            {
+                this.viewText.Alpha = 1;
+            };
+
+            UIViewPropertyAnimator propertyAnimatorOpacityFull = new UIViewPropertyAnimator(4, UIViewAnimationCurve.EaseInOut, setOpacityFull);
+
+            propertyAnimatorOpacityFull.StartAnimation();
         }
 
         public override void DidReceiveMemoryWarning()

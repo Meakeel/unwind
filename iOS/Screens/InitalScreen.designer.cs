@@ -20,14 +20,12 @@ namespace Unwind.iOS.Screens
 
 		[Outlet]
 		UIKit.UILabel txtTitle { get; set; }
+
+		[Outlet]
+		UIKit.UIView viewText { get; set; }
 		
 		void ReleaseDesignerOutlets ()
 		{
-			if (txtTitle != null) {
-				txtTitle.Dispose ();
-				txtTitle = null;
-			}
-
 			if (btnGo != null) {
 				btnGo.Dispose ();
 				btnGo = null;
@@ -36,6 +34,16 @@ namespace Unwind.iOS.Screens
 			if (txtInput != null) {
 				txtInput.Dispose ();
 				txtInput = null;
+			}
+
+			if (txtTitle != null) {
+				txtTitle.Dispose ();
+				txtTitle = null;
+			}
+
+			if (viewText != null) {
+				viewText.Dispose ();
+				viewText = null;
 			}
 		}
 	}
