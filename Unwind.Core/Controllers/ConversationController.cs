@@ -47,6 +47,13 @@
             return await this.SendMessage(item);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> AddIos([FromBody] ConversationItem item)
+        {
+            return await this.SendMessage(item);
+        }
+
+
         private async Task<IActionResult> SendMessage(ConversationItem item)
         {
 
