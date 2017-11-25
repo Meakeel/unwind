@@ -136,6 +136,8 @@
     <ImageAsset Include="Assets.xcassets\XamarinLogo.imageset\xamarin_logo%402x.png" />
     <ImageAsset Include="Assets.xcassets\XamarinLogo.imageset\xamarin_logo%403x.png" />
     <ImageAsset Include="Assets.xcassets\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Throphie.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\Throphie.imageset\blue-trophy-box.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppDelegate.cs" />
@@ -145,6 +147,13 @@
     <Compile Include="Screens\InitalScreen.designer.cs">
       <DependentUpon>InitalScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\UIBarButtonItemHelpers.cs" />
+    <Compile Include="Screens\ThrophiesScreen.cs" />
+    <Compile Include="Screens\ThrophiesScreen.designer.cs">
+      <DependentUpon>ThrophiesScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NavigationControllers\CustomNavigationController.cs" />
+    <Compile Include="ColourPalette.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Entitlements.plist" />
@@ -154,9 +163,13 @@
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Screens\InitalScreen.xib" />
+    <InterfaceDefinition Include="Screens\ThrophiesScreen.xib" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Screens\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Assets.xcassets\Throphie.imageset\" />
+    <Folder Include="NavigationControllers\" />
   </ItemGroup>
   <Import Project="..\Unwind\Unwind.projitems" Label="Shared" Condition="Exists('..\Unwind\Unwind.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

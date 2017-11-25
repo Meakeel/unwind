@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using UIKit;
+using Unwind.iOS.Helpers;
 
 namespace Unwind.iOS.Screens
 {
@@ -16,6 +17,8 @@ namespace Unwind.iOS.Screens
         public override void ViewDidLoad()
         {
             base.ViewDidLoad();
+
+            this.NavigationItem.LeftBarButtonItem = UIBarButtonItemHelpers.Create("Menu", () => base.SetupPicker());
 
             this.btnGo.TouchUpInside += async (object sender, EventArgs e) => await this.SendMessage();
         }
@@ -42,12 +45,13 @@ namespace Unwind.iOS.Screens
 
             propertyAnimatorOpacityNone.StartAnimation();
 
-            var Response = await this.ViewModel.SendMessage(item);
+            var Response = await this.ViewModel.SendMessage(item);  
 
             TimerCallback abortPositionDelegate = new TimerCallback(setOpacityFull);
             Timer abortPosition = new Timer(abortPositionDelegate, null, 3000, Timeout.Infinite);
 
             this.apiResponse = Response;
+            this.txtTitle.Text = this.apiResponse;
         }
 
         private void OpacityFull()

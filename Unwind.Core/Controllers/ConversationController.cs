@@ -28,18 +28,6 @@
             return Ok("Service Ok");
         }
 
-        [HttpGet]
-        public IActionResult First()
-        {
-            ConversationService _conversation = new ConversationService(Constants.WatsonUserName, Constants.WatsonPassword, Constants.WatsonVersionDate);
-
-            var messageRequest = new MessageRequest();
-
-            var result = _conversation.Message(Constants.WatsonWorkSpaceId, messageRequest);
-
-            return Ok(result.Output.Text);
-
-        }
 
         [HttpGet]
         public async Task<IActionResult> Add([FromQuery] ConversationItem item)
@@ -56,7 +44,6 @@
 
         private async Task<IActionResult> SendMessage(ConversationItem item)
         {
-
             try
             {
                 if (item == null || string.IsNullOrWhiteSpace(item.Id))

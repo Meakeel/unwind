@@ -2,6 +2,7 @@
 {
     using System;
     using UIKit;
+    using Unwind.iOS.NavigationControllers;
 
     public abstract class BaseScreen<T> : UIViewController
         where T : BaseViewModel, new()
@@ -66,6 +67,41 @@
         public override UIStatusBarStyle PreferredStatusBarStyle()
         {
             return UIStatusBarStyle.LightContent;
+        }
+
+
+        public void SetupPicker()
+        {
+            var picker = UIAlertController.Create("Menu", string.Empty, UIAlertControllerStyle.ActionSheet);
+            picker.AddAction(UIAlertAction.Create("Home", UIAlertActionStyle.Default, (obj) => this.GoToHome()));
+            picker.AddAction(UIAlertAction.Create("Breath", UIAlertActionStyle.Default, (obj) => this.Todo()));
+            picker.AddAction(UIAlertAction.Create("Notepad", UIAlertActionStyle.Default, (obj) => this.Todo()));
+            picker.AddAction(UIAlertAction.Create("Trophies", UIAlertActionStyle.Default, (obj) => this.GoToTrophies()));
+            picker.AddAction(UIAlertAction.Create("About", UIAlertActionStyle.Default, (obj) => this.Todo()));
+
+            this.PresentViewController(picker, true, null);
+        }
+
+        private void ClosePicker()
+        {
+            return;
+        }
+
+        private void Todo()
+        {
+            new UIAlertView("Come back later", "We are adding new functionality all the time please come back later", null, "OK").Show();
+            return;
+        }
+
+        private void GoToHome()
+        {
+            this.PresentViewController(new CustomNavigationController(new InitalScreen(), ColourPalette.Blue), true, null);
+
+        }
+
+        private void GoToTrophies()
+        {
+            this.PresentViewController(new CustomNavigationController(new ThrophiesScreen(), ColourPalette.Blue), true, null);
         }
     }
 }
